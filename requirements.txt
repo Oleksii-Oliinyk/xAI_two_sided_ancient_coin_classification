@@ -1,0 +1,27 @@
+# PyTorch with CUDA 12.6 wheels; for CPU only remove the index line and the "+cu126" suffixes
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch==2.7.0+cu126
+torchvision==0.22.0+cu126
+
+# data / training
+numpy
+pillow
+pandas
+openpyxl
+scikit-learn
+scipy
+tqdm
+wandb
+python-dotenv
+
+# XAI + plots
+shap
+lime
+scikit-image
+matplotlib
+seaborn
+
+# web app
+fastapi
+uvicorn
+python-multipart

@@ -1,2 +1,25 @@
-venv
-*.pyc
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# secrets (WANDB_API_KEY)
+.env
+
+# datasets: images, splits, catalogue.json, annotations (several GB, not stored in git)
+dataset/data/
+dataset/xai_data/
+
+# trained models and experiment outputs (checkpoints, XAI figures, tables, logs)
+runs/
+wandb/
+*.pth
+*.pt
+
+# IDE / OS / local tool settings
+.vscode/
+.idea/
+.claude/
+Thumbs.db
+.DS_Store

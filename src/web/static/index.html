@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coin Classifier</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>Roman Republic Coin Classifier</h1>
+  <p class="muted">Drop a coin photo, predict its type, read its catalogue entry and inspect what the model looked at.</p>
+</header>
+
+<main>
+  <!-- 1. Upload -->
+  <section class="card">
+    <h2><span class="step">1</span> Upload</h2>
+    <p class="muted small">At least one side. With both sides the two models' probabilities are averaged.</p>
+    <div class="dropzones">
+      <label class="dropzone" data-side="Observe">
+        <input type="file" accept="image/*" hidden>
+        <div class="dz-empty">
+          <strong>Observe</strong>
+          <span>Drop image here or click to choose</span>
+        </div>
+        <img class="dz-preview" alt="Observe preview" hidden>
+        <button type="button" class="dz-clear" title="Remove" hidden>&times;</button>
+        <span class="dz-tag" hidden>Observe</span>
+      </label>
+      <label class="dropzone" data-side="Reverse">
+        <input type="file" accept="image/*" hidden>
+        <div class="dz-empty">
+          <strong>Reverse</strong>
+          <span>Drop image here or click to choose</span>
+        </div>
+        <img class="dz-preview" alt="Reverse preview" hidden>
+        <button type="button" class="dz-clear" title="Remove" hidden>&times;</button>
+        <span class="dz-tag" hidden>Reverse</span>
+      </label>
+    </div>
+    <div class="actions">
+      <button id="predict-btn" class="primary" disabled>Predict</button>
+      <span id="predict-status" class="status"></span>
+    </div>
+  </section>
+
+  <!-- 2. Prediction + catalogue -->
+  <section id="result-section" class="card" hidden>
+    <h2><span class="step">2</span> Prediction</h2>
+    <div id="prediction"></div>
+    <h3>Catalogue</h3>
+    <div id="catalogue"></div>
+  </section>
+
+  <!-- 3. XAI -->
+  <section id="xai-section" class="card" hidden>
+    <h2><span class="step">3</span> Explanation</h2>
+    <p class="muted small">Heatmap for the predicted class. Drag the slider to compare the raw photo with the overlay.</p>
+    <div class="xai-controls">
+      <div class="segmented" id="side-select"></div>
+      <select id="method-select"></select>
+      <button id="explain-btn" class="primary">Generate heatmap</button>
+      <span id="explain-status" class="status"></span>
+    </div>
+    <p id="method-info" class="muted small"></p>
+
+    <div id="compare" class="compare" hidden>
+      <img id="compare-raw" alt="Raw image">
+      <img id="compare-overlay" alt="Heatmap overlay">
+      <div class="compare-handle"><span></span></div>
+      <span class="compare-label left">Raw</span>
+      <span class="compare-label right" id="compare-method-label">Heatmap</span>
+      <input id="compare-range" type="range" min="0" max="100" value="50" aria-label="Raw / heatmap slider">
+    </div>
+    <div id="legend" class="legend" hidden></div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
